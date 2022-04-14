@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html
+        lang="en"
         xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="https://www.thymeleaf.org"
-        lang="en">
+        xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <script
-            src="https://kit.fontawesome.com/38cd4014df.js"
             crossorigin="anonymous"
+            src="https://kit.fontawesome.com/38cd4014df.js"
     ></script>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
@@ -28,40 +28,42 @@
     <div class="e-nav-container">
         <ul class="col-12 e-nav-list">
             <li class="col-lg-2 col-md-12 col-sm-12 e-nav-item">
-                <a href="/dashboard" class="nav-link e-nav-link"><i class="fas fa-columns mr-2"></i>Dashboard</a>
+                <a class="nav-link e-nav-link" href="/dashboard"><i class="fas fa-columns mr-2"></i>Dashboard</a>
             </li>
             <li class="col-lg-3 col-md-12 col-sm-12 e-nav-item">
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle e-main-dropdown" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle e-main-dropdown"
+                            data-toggle="dropdown" id="dropdownMenuButton" type="button">
                         <i class="fas fa-clipboard mr-2"></i>Posts
                     </button>
-                    <div class="dropdown-menu e-dd-content" aria-labelledby="dropdownMenuButton">
-                        <a href="/myposts" class="dropdown-item"><i class="fas fa-edit mr-2"></i>Manage your posts</a>
-                        <a href="/wishlist" class="dropdown-item"><i class="fas fa-heart mr-2"></i>View your
+                    <div aria-labelledby="dropdownMenuButton" class="dropdown-menu e-dd-content">
+                        <a class="dropdown-item" href="/myposts"><i class="fas fa-edit mr-2"></i>Manage your posts</a>
+                        <a class="dropdown-item" href="/wishlist"><i class="fas fa-heart mr-2"></i>View your
                             wishlist</a>
                     </div>
                 </div>
             </li>
             <li class="col-lg-3 col-md-12 col-sm-12 e-nav-item">
-                <a href="/message" class="nav-link e-nav-link"><i class="fas fa-envelope mr-2"></i>Messages</a>
+                <a class="nav-link e-nav-link" href="/message"><i class="fas fa-envelope mr-2"></i>Messages</a>
             </li>
             <li class="col-lg-2 col-md-12 col-sm-12 e-nav-item">
-                <a href="/logout" class="nav-link e-nav-link"><i class="fas fa-sign-out-alt mr-2"></i>Log out</a>
+                <a class="nav-link e-nav-link" href="/logout"><i class="fas fa-sign-out-alt mr-2"></i>Log out</a>
             </li>
         </ul>
     </div>
     <div class="col-12 e-user-container">
         <div class="e-user-content">
             <div class="e-user-img">
-                <img src="img/logo/123.jpg" th:src="${user.image}" width="300" height="300" alt="">
+                <img alt="" height="300" src="img/logo/123.jpg" th:src="${user.image}" width="300">
             </div>
             <div class="e-user-info">
-                <h1 th:text="${user.name} + ' ' + ${user.surname}" class="col-12 e-user-data"></h1>
-                <p th:text="${user.city}" class="col-12 e-user-data"></p>
-                <p th:text="'(+994) ' + ${user.phone}" class="col-12 e-user-data"></p>
-                <a th:href="'/message/'+${user.id}" class="col-lg-3 col-md-3 col-sm-12 btn nav-link e-user-btn"><i class="fas fa-envelope col-2"></i>Send Message</a>
-                <a th:href="'block/' + ${user.id}"  class="col-lg-3 col-md-3 col-sm-12 btn nav-link e-user-btn"><i class="fas fa-times col-2"></i>Block</a>
+                <h1 class="col-12 e-user-data" th:text="${user.name} + ' ' + ${user.surname}"></h1>
+                <p class="col-12 e-user-data" th:text="${user.city}"></p>
+                <p class="col-12 e-user-data" th:text="'(+994) ' + ${user.phone}"></p>
+                <a class="col-lg-3 col-md-3 col-sm-12 btn nav-link e-user-btn" th:href="'/message/'+${user.id}"><i
+                        class="fas fa-envelope col-2"></i>Send Message</a>
+                <a class="col-lg-3 col-md-3 col-sm-12 btn nav-link e-user-btn" th:href="'block/' + ${user.id}"><i
+                        class="fas fa-times col-2"></i>Block</a>
             </div>
         </div>
     </div>
@@ -69,20 +71,26 @@
     <footer class="col-12 mt-3 e-footer-container" id="contact">
         <section class="col-lg-4 col-md-4 col-sm-12 e-footer-content">
             <ul class="col-12 e-footer-list">
-                <li class="col-12 my-1 e-footer-item text-left"><a href="/update"><i class="fas fa-user-edit col-2"></i>Manage your account</a></li>
-                <li class="col-12 my-1 e-footer-item text-left"><a href="/myposts"><i class="fas fa-edit col-2"></i>Manage your posts</a></li>
+                <li class="col-12 my-1 e-footer-item text-left"><a href="/update"><i class="fas fa-user-edit col-2"></i>Manage
+                    your account</a></li>
+                <li class="col-12 my-1 e-footer-item text-left"><a href="/myposts"><i class="fas fa-edit col-2"></i>Manage
+                    your posts</a></li>
             </ul>
         </section>
         <section class="col-lg-4 col-md-4 col-sm-12 e-footer-content">
             <ul class="col-12 e-footer-list">
-                <li class="col-12 my-1 e-footer-item"><a href="/feedback" class=""><i class="fas fa-exclamation-triangle col-2"></i>Send feedback</a></li>
+                <li class="col-12 my-1 e-footer-item"><a class="" href="/feedback"><i
+                        class="fas fa-exclamation-triangle col-2"></i>Send feedback</a></li>
             </ul>
         </section>
         <section class="col-lg-4 col-md-4 col-sm-12 e-footer-content">
             <ul class="col-12 e-footer-list">
-                <li class="col-12 my-1 e-footer-item"><a class="" href="https://www.facebook.com/"><i class="fab fa-facebook-f col-2"></i>Facebook</a></li>
-                <li class="col-12 my-1 e-footer-item"><a class="" href="https://www.instagram.com/"><i class="fab fa-instagram col-2"></i>Instagram</a></li>
-                <li class="col-12 my-1 e-footer-item"><a class="" href="https://twitter.com/"><i class="fab fa-twitter col-2"></i>Twitter</a></li>
+                <li class="col-12 my-1 e-footer-item"><a class="" href="https://www.facebook.com/"><i
+                        class="fab fa-facebook-f col-2"></i>Facebook</a></li>
+                <li class="col-12 my-1 e-footer-item"><a class="" href="https://www.instagram.com/"><i
+                        class="fab fa-instagram col-2"></i>Instagram</a></li>
+                <li class="col-12 my-1 e-footer-item"><a class="" href="https://twitter.com/"><i
+                        class="fab fa-twitter col-2"></i>Twitter</a></li>
             </ul>
         </section>
     </footer>
