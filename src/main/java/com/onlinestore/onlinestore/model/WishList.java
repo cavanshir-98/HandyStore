@@ -5,7 +5,6 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -14,7 +13,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
+public class WishList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,9 +21,8 @@ public class Post {
 
     String name;
 
-
-    @OneToOne
-    @JoinColumn(name = "city_Id")
+    @ManyToOne
+    @JoinColumn(name = "city_id")
     City city;
 
     @DateTimeFormat(pattern = "mm/dd/yyyy")
@@ -36,12 +34,6 @@ public class Post {
     @OneToOne
     @JoinColumn(name = "category_Id")
     Category category;
-
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinTable(name = "post_wish_id",
-            joinColumns = @JoinColumn(name = "post_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "wish_id", referencedColumnName = "id"))
-    List<WishList> wishList;
 
 
 }

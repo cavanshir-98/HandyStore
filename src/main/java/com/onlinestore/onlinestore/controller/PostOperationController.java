@@ -21,7 +21,7 @@ public class PostOperationController {
     private final CityService cityService;
 
     @GetMapping
-    public String handle_get_id(Model model) {
+    public String getAllPost(Model model) {
 
         model.addAttribute("post", postService.findAll());
         model.addAttribute("category", categoryService.getAll());

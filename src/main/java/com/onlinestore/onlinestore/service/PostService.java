@@ -12,4 +12,7 @@ public interface PostService {
     void deleteById(Long id);
 
     List<PostDto> findAll();
+
+    void addWishlist(Long id);
+
 }
