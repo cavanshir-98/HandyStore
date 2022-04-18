@@ -45,7 +45,7 @@
         <input class="col-12 form-control e-input" name="surname" placeholder="Enter your surname" required type="text">
         <select class="col-12 form-control e-input" name="city">
             <option disabled selected>Select your city</option>
-            <option th:each="city : ${cities}" th:text="${city.name}" th:value="${city.name}"></option>
+            <option th:each="city : ${city}" th:text="${city.name}" th:value="${city.name}"></option>
         </select>
         <input class="col-12 form-control e-input" name="number" placeholder="Enter your mobile number: XXYYYZZWW" required
                type="text">

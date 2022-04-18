@@ -14,7 +14,7 @@ public class PostDto {
     private String name;
     private City city;
     private String date;
-    private UUID imageId;
+//    private UUID imageId;
     private Category category;
 
 

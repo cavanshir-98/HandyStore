@@ -148,9 +148,9 @@
                 <div class="e-post-wishlist">
                     <i class="fas fa-heart col-2"></i>
                     <a class="card-link e-post-data" th:href="'/wishlist/delete/' + ${post.id}"
-                       th:if="${(wished!=null) and (wished==true)}" th:text="'Remove from wishlist'">Add to wishlist</a>
-                    <a class="card-link e-post-data" th:href="'/wishlist/add/' + ${post.id}" th:if="${(wished==null)}"
-                       th:text="'Add to wishlist'"></a>
+                       th:if="${(wished!=null) and (wished==true)}" th:text="'Remove from wishlist'">Remove from wishlist</a>
+                    <a class="card-link e-post-data" th:href="'/wishlist/delete/' + ${post.id}" th:if="${(wished==null)}"
+                       th:text="'Remove from wishlist'"></a>
                 </div>
             </div>
         </section>

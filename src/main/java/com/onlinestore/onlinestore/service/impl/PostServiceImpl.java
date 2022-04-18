@@ -8,6 +8,10 @@ import com.onlinestore.onlinestore.repository.WishlistRepository;
 import com.onlinestore.onlinestore.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +20,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
+
 
     private final PostRepository postRepository;
     private final ModelMapper modelMapper;
@@ -36,8 +41,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public Object deleteById(Long id) {
         postRepository.deleteById(id);
+        return ResponseEntity.ok();
     }
 
 
@@ -52,10 +58,10 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void addWishlist(Long id) {
+    public Object addWishlist(Long id) {
 
-        WishList wishList =new WishList();
-        Post post =postRepository.getById(id);
+        WishList wishList = new WishList();
+        Post post = postRepository.getById(id);
 
         wishList.setName(post.getName());
         wishList.setId(post.getId());
@@ -64,5 +70,29 @@ public class PostServiceImpl implements PostService {
         wishList.setCity(post.getCity());
         wishList.setCategory(post.getCategory());
         wishlistRepository.save(wishList);
+        return wishList;
     }
+
+    @Override
+    public Object deleteByIdForWishlist(Long id) {
+       wishlistRepository.deleteById(id);
+       return ResponseEntity.ok();
+    }
+
+    @Override
+    public List<WishList> getAllWishList() {
+        return wishlistRepository.findAll();
+    }
+
+
+    @Override
+    public Page<Post> findPage(int currentPage) {
+        Pageable pageable = PageRequest.of(currentPage - 1, 10);
+        return postRepository.findAll(pageable);
+    }
+
+
 }
+
+
+

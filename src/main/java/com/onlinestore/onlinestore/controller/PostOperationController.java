@@ -8,19 +8,26 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/post")
+@RequestMapping("/mypost")
 public class PostOperationController {
 
     private final PostService postService;
     private final CategoryService categoryService;
     private final CityService cityService;
 
-    @GetMapping
+//    @RequestMapping
+//    public RedirectView firstMain() {
+//        return new RedirectView("/mypost");
+//    }
+
+
+    @GetMapping("/0")
     public String getAllPost(Model model) {
 
         model.addAttribute("post", postService.findAll());
@@ -30,25 +37,27 @@ public class PostOperationController {
         return "a_u-post";
     }
 
-    @PostMapping
+    @PostMapping("/0")
     public String createPost(@ModelAttribute PostDto postDto) {
 
         postService.addPost(postDto);
 
-        return "redirect:/post";
+        return "redirect:/myposts";
     }
 
 
-    @PutMapping("/{id}")
-    public PostDto updateById(@Valid @PathVariable Long id,
-                              @RequestBody PostDto postDto) {
-        return postService.updateById(id, postDto);
-
+    @PutMapping("/0/{id}")
+    public String updateById( Model model,@PathVariable Long id,
+                              @ModelAttribute PostDto postDto) {
+       model.addAttribute("post",postService.updateById(id,postDto));
+    return "redirect:/mypost";
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long id) {
-        postService.deleteById(id);
+    public String deleteById( Model model,@PathVariable Long id,
+                            @ModelAttribute PostDto postDto) {
+        model.addAttribute("post",postService.deleteById(id));
+        return "redirect:/mypost";
     }
 
 
