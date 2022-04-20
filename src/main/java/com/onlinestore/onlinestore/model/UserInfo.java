@@ -1,13 +1,18 @@
 package com.onlinestore.onlinestore.model;
 
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.UUID;
 
-@Entity
 @Data
+@Entity
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserInfo {
 
     @Id
@@ -19,7 +24,7 @@ public class UserInfo {
     String surname;
 
     @OneToOne
-    City city;
+    City cities;
 
     String number;
 

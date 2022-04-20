@@ -29,8 +29,15 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public UserInfoDto addUserInfo(UserInfoDto userInfoDto) {
-        UserInfo userInfo = userInfoRepository.save(modelMapper.map(userInfoDto, UserInfo.class));
-        return modelMapper.map(userInfo, UserInfoDto.class);
+    public void addUserInfo(UserInfoDto userInfoDto) {
+    UserInfo userInfo =new UserInfo();
+    userInfo.setCities(userInfoDto.getCity());
+    userInfo.setId(userInfoDto.getId());
+    userInfo.setName(userInfoDto.getName());
+    userInfo.setNumber(userInfoDto.getNumber());
+    userInfo.setSurname(userInfoDto.getSurname());
+    userInfoRepository.save(userInfo);
+
+
     }
 }

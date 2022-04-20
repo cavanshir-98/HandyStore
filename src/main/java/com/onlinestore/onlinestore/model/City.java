@@ -3,10 +3,7 @@ package com.onlinestore.onlinestore.model;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -14,11 +11,13 @@ import javax.persistence.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "city")
 public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @Column(name = "name")
     String name;
 }

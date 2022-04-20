@@ -9,5 +9,5 @@ public interface UserInfoService {
 
    List<UserInfoDto> getAll();
 
-   UserInfoDto addUserInfo(UserInfoDto userInfoDto);
+   void addUserInfo(UserInfoDto userInfoDto);
 }
