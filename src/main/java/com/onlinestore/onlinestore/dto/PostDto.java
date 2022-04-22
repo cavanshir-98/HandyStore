@@ -1,10 +1,9 @@
 package com.onlinestore.onlinestore.dto;
 
+//import com.onlinestore.onlinestore.model.Categoryy;
 import com.onlinestore.onlinestore.model.Category;
 import com.onlinestore.onlinestore.model.City;
 import lombok.Data;
-
-import java.util.UUID;
 
 @Data
 

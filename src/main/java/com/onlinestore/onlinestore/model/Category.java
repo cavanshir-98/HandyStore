@@ -1,26 +1,31 @@
 package com.onlinestore.onlinestore.model;
 
-import lombok.*;
-import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.Objects;
+import java.util.Set;
 
 @Data
 @Entity
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class Category {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    @Column(name = "c_id")
+    private long id;
+    private String name;
 
-    String name;
+    @OneToMany(mappedBy = "category")
+    Set<Post> posts;
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
+    @Override
+    public String toString() {
+        return String.format("Category{id=%d}", id);
+    }
 }

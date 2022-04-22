@@ -8,6 +8,6 @@ import java.util.List;
 public interface UserInfoService {
 
    List<UserInfoDto> getAll();
-
-   void addUserInfo(UserInfoDto userInfoDto);
+//
+//   void addUserInfo(UserInfoDto userInfoDto);
 }

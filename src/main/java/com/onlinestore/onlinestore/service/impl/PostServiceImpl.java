@@ -65,9 +65,9 @@ public class PostServiceImpl implements PostService {
 
         wishList.setName(post.getName());
         wishList.setId(post.getId());
-        wishList.setImageId(post.getImageId());
-        wishList.setDate(post.getDate());
-        wishList.setCity(post.getCity());
+//        wishList.setImageId(post.getImage());
+//        wishList.setDate(post.getDate());
+//        wishList.setCity(post.getCity());
         wishList.setCategory(post.getCategory());
         wishlistRepository.save(wishList);
         return wishList;

@@ -4,23 +4,28 @@ import com.onlinestore.onlinestore.model.City;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.UUID;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserInfoDto {
 
-    Long id;
+
+String email;
 
     String name;
 
     String surname;
 
-    City city;
+    String city;
 
     String number;
 
-    UUID imageId;
+    MultipartFile imageId;
 
 }

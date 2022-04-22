@@ -1,7 +1,7 @@
 package com.onlinestore.onlinestore.controller;
 
-import app.form.FormReg;
-import app.service.UserService;
+import com.onlinestore.onlinestore.form.FormReg;
+import com.onlinestore.onlinestore.service.impl.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;

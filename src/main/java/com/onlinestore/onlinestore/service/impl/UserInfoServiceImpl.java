@@ -28,16 +28,16 @@ public class UserInfoServiceImpl implements UserInfoService {
         return all;
     }
 
-    @Override
-    public void addUserInfo(UserInfoDto userInfoDto) {
-    UserInfo userInfo =new UserInfo();
-    userInfo.setCities(userInfoDto.getCity());
-    userInfo.setId(userInfoDto.getId());
-    userInfo.setName(userInfoDto.getName());
-    userInfo.setNumber(userInfoDto.getNumber());
-    userInfo.setSurname(userInfoDto.getSurname());
-    userInfoRepository.save(userInfo);
-
-
-    }
+//    @Override
+//    public void addUserInfo(UserInfoDto userInfoDto) {
+//    UserInfo userInfo =new UserInfo();
+//    userInfo.setCity(userInfoDto.getCity());
+//    userInfo.setId(userInfoDto.getId());
+//    userInfo.setName(userInfoDto.getName());
+//    userInfo.setPhone(userInfoDto.getNumber());
+//    userInfo.setSurname(userInfoDto.getSurname());
+//    userInfoRepository.save(userInfo);
+//
+//
+//    }
 }

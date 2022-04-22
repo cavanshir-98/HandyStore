@@ -2,6 +2,7 @@ package com.onlinestore.onlinestore.controller;
 
 
 import com.onlinestore.onlinestore.model.Post;
+import com.onlinestore.onlinestore.model.Userr;
 import com.onlinestore.onlinestore.service.CategoryService;
 import com.onlinestore.onlinestore.service.CityService;
 import com.onlinestore.onlinestore.service.PostService;
@@ -40,12 +41,13 @@ public class DashboardController {
         int totalPages = page.getTotalPages();
         long totalItems = page.getTotalElements();
         List<Post> posts = page.getContent();
+       Userr userr = new Userr();
 
         model.addAttribute("currentPage", pageNumber);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("totalItems", totalItems);
         model.addAttribute("posts", posts);
-//        model.addAttribute("loggedUser","test@");
+        model.addAttribute("user",userr);
 //        model.addAttribute("category",categoryService.getAll());
 
         return "dashboard";

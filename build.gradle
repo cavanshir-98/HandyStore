@@ -32,7 +32,8 @@ dependencies {
 //	implementation 'de.adorsys.sts:secure-token-service:1.0.5'
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent
 	implementation 'org.springframework.boot:spring-boot-starter-parent:2.6.6'
-	compileOnly 'org.projectlombok:lombok'
+    implementation 'org.jetbrains:annotations:20.1.0'
+    compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

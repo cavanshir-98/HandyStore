@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/signin")
 public class LoginController {
 
-  // http://localhost:5000/signin
+  // http://localhost:8080/signin
 
   @GetMapping
-  public String handle_get() {
+  public String login() {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
     if (!(auth instanceof AnonymousAuthenticationToken)) {
