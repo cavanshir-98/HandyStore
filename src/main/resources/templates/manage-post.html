@@ -80,12 +80,12 @@
             </thead>
             <tbody>
             <tr th:each="post : ${posts}">
-<!--                <td><img alt="" height="50" style="border-radius: 50%" th:src="${post.image}" width="50"></td>-->
+                <td><img alt="" height="50" style="border-radius: 50%" th:src="${post.image}" width="50"></td>
                 <td class="align-middle" th:text="${post.name}"></td>
-<!--                <td class="align-middle" th:text="${post.category.getName()}"></td>-->
+                <td class="align-middle" th:text="${post.category.getName()}"></td>
                 <td class="align-middle" th:text="${post.date}"></td>
                 <td class="align-middle">
-                    <a class="btn btn-lg" style="color: rgba(0, 11, 141, 0.7)" th:href="'/mypost/' + ${post.id}">
+                    <a class="btn btn-lg" style="color: rgba(0, 11, 141, 0.7)" th:href="'/myposts/' + ${post.id}">
                             <i class="fas fa-edit"></i></a>
                 </td>
                 <td class="align-middle">

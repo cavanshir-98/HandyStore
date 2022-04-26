@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -27,14 +28,16 @@ public class Userr {
     private String surname;
     private String city;
     private String phone;
-    @Transient
-    private MultipartFile image;
+
+    private String image;
     private LocalDateTime reg_date;
     private boolean status;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<Post> posts;
+    private List<Post> posts;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<WishList> wishLists;
 //    @OneToMany(mappedBy = "from", fetch = FetchType.LAZY)
 //    private Set<Message> from_messages;
 //

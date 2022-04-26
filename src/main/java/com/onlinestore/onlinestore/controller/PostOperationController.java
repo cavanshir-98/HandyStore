@@ -5,6 +5,7 @@ import com.onlinestore.onlinestore.service.CategoryService;
 import com.onlinestore.onlinestore.service.CityService;
 import com.onlinestore.onlinestore.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,33 +34,18 @@ public class PostOperationController {
         model.addAttribute("post", postService.findAll());
         model.addAttribute("category", categoryService.getAll());
         model.addAttribute("city", cityService.getAll());
+        model.addAttribute("image",postService.findAll());
 
         return "a_u-post";
     }
 
     @PostMapping("/0")
-    public String createPost(@ModelAttribute PostDto postDto) {
+    public String createPost(Authentication authentication, @ModelAttribute PostDto postDto) throws Exception {
 
-        postService.addPost(postDto);
+        postService.addPost(authentication,postDto);
 
         return "redirect:/myposts";
     }
-
-
-    @PutMapping("/0/{id}")
-    public String updateById( Model model,@PathVariable Long id,
-                              @ModelAttribute PostDto postDto) {
-       model.addAttribute("post",postService.updateById(id,postDto));
-    return "redirect:/mypost";
-    }
-
-    @DeleteMapping("/{id}")
-    public String deleteById( Model model,@PathVariable Long id,
-                            @ModelAttribute PostDto postDto) {
-        model.addAttribute("post",postService.deleteById(id));
-        return "redirect:/mypost";
-    }
-
 
 }
 

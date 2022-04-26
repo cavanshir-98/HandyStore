@@ -1,15 +1,15 @@
 package com.onlinestore.onlinestore.controller;
 
-import com.onlinestore.onlinestore.repository.WishlistRepository;
-import com.onlinestore.onlinestore.service.CategoryService;
+import com.onlinestore.onlinestore.repository.UserRepo;
 import com.onlinestore.onlinestore.service.CityService;
 import com.onlinestore.onlinestore.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import javax.transaction.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/wishlist")
@@ -17,24 +17,24 @@ import javax.transaction.Transactional;
 public class WishedController {
 
     private final PostService postService;
-    private final CategoryService categoryService;
     private final CityService cityService;
+    private final UserRepo userRepo;
 
     @GetMapping
-    public String getAllAddWish(Model model){
+    public String getAllAddWish(Model model) {
 
         model.addAttribute("posts", postService.getAllWishList());
-        model.addAttribute("category", categoryService.getAll());
+        model.addAttribute("user", userRepo.findAll());
         model.addAttribute("city", cityService.getAll());
         return "wished";
     }
 
 
     @GetMapping("/add/{id}")
-    public String AddWish (Model model, @PathVariable Long id){
+    public String AddWish(Model model, Authentication authentication, @PathVariable Long id) {
 
-        model.addAttribute( "wished",postService.addWishlist(id));
-         return "redirect:/wishlist";
+        model.addAttribute("wished", postService.addWishlist(id));
+        return "redirect:/wishlist";
     }
 
     @GetMapping("/delete/{id}")

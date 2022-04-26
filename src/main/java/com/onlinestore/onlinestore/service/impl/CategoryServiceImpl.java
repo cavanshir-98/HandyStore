@@ -1,6 +1,7 @@
 package com.onlinestore.onlinestore.service.impl;
 
 import com.onlinestore.onlinestore.dto.CategoryDto;
+import com.onlinestore.onlinestore.model.Category;
 import com.onlinestore.onlinestore.repository.CategoryRepo;
 import com.onlinestore.onlinestore.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,6 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepo categoryRepo;
     private final ModelMapper modelMapper;
 
-
     @Override
     public List<CategoryDto> getAll() {
 
@@ -28,4 +28,5 @@ public class CategoryServiceImpl implements CategoryService {
         return category;
 
     }
+
 }

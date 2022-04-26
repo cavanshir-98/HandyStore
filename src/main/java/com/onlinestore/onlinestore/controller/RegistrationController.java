@@ -1,6 +1,6 @@
 package com.onlinestore.onlinestore.controller;
 
-import com.onlinestore.onlinestore.form.FormReg;
+import com.onlinestore.onlinestore.dto.RegistrationDto;
 import com.onlinestore.onlinestore.service.impl.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -22,9 +22,8 @@ public class RegistrationController {
 
     private final UserService userService;
 
-    // http://localhost:5000/signup
     @GetMapping
-    public String handle_get(Model model) {
+    public String register(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         if (!(auth instanceof AnonymousAuthenticationToken)) {
@@ -34,7 +33,7 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public RedirectView handle_post(FormReg form) {
+    public RedirectView saveUser(RegistrationDto form) {
         userService.register(form.getEmail(), form.getPass(), form.getConPass());
         return new RedirectView("/signin");
     }

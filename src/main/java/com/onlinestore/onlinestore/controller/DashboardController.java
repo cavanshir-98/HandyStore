@@ -2,12 +2,13 @@ package com.onlinestore.onlinestore.controller;
 
 
 import com.onlinestore.onlinestore.model.Post;
-import com.onlinestore.onlinestore.model.Userr;
-import com.onlinestore.onlinestore.service.CategoryService;
+import com.onlinestore.onlinestore.security.UserrDetails;
 import com.onlinestore.onlinestore.service.CityService;
 import com.onlinestore.onlinestore.service.PostService;
+import com.onlinestore.onlinestore.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,36 +24,40 @@ import java.util.List;
 public class DashboardController {
 
 
+    private final UserService userService;
     private final PostService postService;
-    private final CategoryService categoryService;
     private final CityService cityService;
 
 
-    @RequestMapping
-    public RedirectView firstMain() {
-    return new RedirectView("/dashboard/1");
+    @RequestMapping()
+    public RedirectView redirectView() {
+        return new RedirectView("/dashboard/1");
     }
 
+    @GetMapping("/{currentPage}")
+    public String dashboard(Model model, Authentication au,
+                            @PathVariable("currentPage") int currentPageOp
+    ) {
 
-    @GetMapping("/{pageNumber}")
-    public String getOnePage(Model model, @PathVariable("pageNumber") int pageNumber) {
-
-        Page<Post> page = postService.findPage(pageNumber);
+        Page<Post> page = postService.findPage(currentPageOp);
         int totalPages = page.getTotalPages();
         long totalItems = page.getTotalElements();
         List<Post> posts = page.getContent();
-       Userr userr = new Userr();
 
-        model.addAttribute("currentPage", pageNumber);
+        model.addAttribute("currentPage", currentPageOp);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("totalItems", totalItems);
         model.addAttribute("posts", posts);
-        model.addAttribute("user",userr);
-//        model.addAttribute("category",categoryService.getAll());
+        model.addAttribute("user", userService.findByEmail(getLoggedUser(au).getUsername()));
+        model.addAttribute("city", cityService.getAll());
+        model.addAttribute("loggedUser", userService.findByEmail(getLoggedUser(au).getUsername()));
 
         return "dashboard";
     }
 
+    UserrDetails getLoggedUser(Authentication authentication) {
+        return (UserrDetails) authentication.getPrincipal();
+    }
 
 }
 

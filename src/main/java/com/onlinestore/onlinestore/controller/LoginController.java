@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/signin")
 public class LoginController {
 
-  // http://localhost:8080/signin
-
   @GetMapping
   public String login() {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();

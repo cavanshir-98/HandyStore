@@ -3,6 +3,7 @@ package com.onlinestore.onlinestore.model;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -21,14 +22,16 @@ public class WishList {
 
     String name;
 
-    @ManyToOne
-    @JoinColumn(name = "city_id")
+    @OneToOne
     City city;
 
     @DateTimeFormat(pattern = "mm/dd/yyyy")
     String date;
 
-    UUID imageId;
+    String image;
+
+    @OneToOne
+    private Userr user;
 
 
     @OneToOne

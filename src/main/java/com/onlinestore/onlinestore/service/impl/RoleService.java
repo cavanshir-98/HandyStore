@@ -11,16 +11,16 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class RoleService {
-  private final RoleRepo roleRepo;
+    private final RoleRepo roleRepo;
 
-  public Role findByRole(String role) {
-    return roleRepo.findRolesByName(role).get(0);
-  }
+    public Role findByRole(String role) {
+        return roleRepo.findRolesByName(role).get(0);
+    }
 
-  public void addRoleToUser(Userr user, String roleName) {
-    Role role = findByRole(roleName);
-    role.getUsers().add(user);
-    roleRepo.save(role);
-    log.info("Role added succesfully");
-  }
+    public void addRoleToUser(Userr user, String roleName) {
+        Role role = findByRole(roleName);
+        role.getUsers().add(user);
+        roleRepo.save(role);
+        log.info("Role added succesfully");
+    }
 }

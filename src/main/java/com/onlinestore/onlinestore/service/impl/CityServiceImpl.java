@@ -1,7 +1,10 @@
 package com.onlinestore.onlinestore.service.impl;
 
 import com.onlinestore.onlinestore.dto.CityDto;
+import com.onlinestore.onlinestore.model.City;
+import com.onlinestore.onlinestore.model.Post;
 import com.onlinestore.onlinestore.repository.CityRepository;
+import com.onlinestore.onlinestore.repository.PostRepository;
 import com.onlinestore.onlinestore.service.CityService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -16,6 +19,7 @@ public class CityServiceImpl implements CityService {
 
     private final CityRepository cityRepository;
     private final ModelMapper modelMapper;
+    private final PostRepository postRepository;
 
     @Override
     public List<CityDto> getAll() {
@@ -25,6 +29,6 @@ public class CityServiceImpl implements CityService {
             return map;
         }).collect(Collectors.toList());
         return cityDto;
-
     }
+
 }
