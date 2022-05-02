@@ -33,7 +33,7 @@ public class PostViewController {
         model.addAttribute("post", postRepository.getById(id));
         model.addAttribute("category", categoryService.getAll());
         model.addAttribute("city", cityService.getAll());
-        return "a_u-post";
+        return "up-post";
     }
 
     @PostMapping("/{id}")

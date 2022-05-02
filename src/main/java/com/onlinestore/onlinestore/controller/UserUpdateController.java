@@ -1,8 +1,12 @@
 package com.onlinestore.onlinestore.controller;
 
 import com.onlinestore.onlinestore.dto.UserInfoDto;
+import com.onlinestore.onlinestore.repository.CityRepository;
+import com.onlinestore.onlinestore.repository.PostRepository;
+import com.onlinestore.onlinestore.repository.UserRepo;
 import com.onlinestore.onlinestore.security.UserrDetails;
 import com.onlinestore.onlinestore.service.CityService;
+import com.onlinestore.onlinestore.service.PostService;
 import com.onlinestore.onlinestore.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -23,10 +27,15 @@ public class UserUpdateController {
     private final UserService userService;
     private final CityService cityService;
 
+    private final UserRepo userRepo;
+    private final PostRepository postRepository;
+
     @GetMapping()
     public String getUser(Model model, Authentication au) {
         model.addAttribute("loggedUser", userService.findByIdForImage(getLoggedUser(au).getId()));
         model.addAttribute("cities", cityService.getAll());
+        model.addAttribute("user", userRepo.findById(getLoggedUser(au).getId()).orElseThrow());
+
         return "update-profile";
     }
 

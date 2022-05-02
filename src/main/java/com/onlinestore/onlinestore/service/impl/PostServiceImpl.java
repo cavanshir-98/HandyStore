@@ -88,7 +88,7 @@ public class PostServiceImpl implements PostService {
         String url = uploadImage.get("url");
         updatePost.setImage(url);
         postRepository.save(updatePost);
-        return modelMapper.map(updatePost,PostDto.class);
+        return modelMapper.map(updatePost, PostDto.class);
     }
 
     @Override

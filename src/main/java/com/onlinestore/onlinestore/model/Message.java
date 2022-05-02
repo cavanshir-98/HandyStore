@@ -11,10 +11,12 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 public class Message {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "m_id")
     private long id;
+
     private String message;
     private LocalDateTime date;
 
@@ -26,8 +28,6 @@ public class Message {
             inverseJoinColumns = {@JoinColumn(name = "from_id",
                     referencedColumnName = "u_id")})
     private Userr from;
-
-
 
     @ManyToOne
     @JoinTable(name = "r_to_mes",

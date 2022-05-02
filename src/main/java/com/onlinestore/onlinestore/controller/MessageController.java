@@ -26,7 +26,6 @@ public class MessageController {
 
     private final MessageService messageService;
     private final UserService userService;
-//    private final BlockedService blockedService;
 
     @GetMapping()
     public String getLastMessageByUser(Model model, Authentication au) {
@@ -36,10 +35,8 @@ public class MessageController {
     }
 
     @GetMapping("/{id}")
-    public String handle_get(@PathVariable String id, Model model, Authentication au) {
+    public String findMessagesBetween(@PathVariable String id, Model model, Authentication au) {
         long loggedUserId = getLoggedUser(au).getId();
-
-//        blockedService.checkBlock(id, loggedUserId);
 
         List<Message> m = messageService.findMessagesBetween(loggedUserId, id);
 
@@ -50,10 +47,8 @@ public class MessageController {
     }
 
     @GetMapping("/all/{id}")
-    public String handle_get_all(@PathVariable String id, Model model, Authentication au) {
+    public String seeAllMessages(@PathVariable String id, Model model, Authentication au) {
         long loggedUserId = getLoggedUser(au).getId();
-
-//        blockedService.checkBlock(id, loggedUserId);
 
         model.addAttribute("loggedUser", userService.findByEmail(getLoggedUser(au).getUsername()));
         model.addAttribute("currentUser", userService.findById(id));
@@ -62,7 +57,7 @@ public class MessageController {
     }
 
     @PostMapping("/{id}")
-    public RedirectView handle_post(ChatDto form, @PathVariable String id, Authentication au) {
+    public RedirectView sendMessage(ChatDto form, @PathVariable String id, Authentication au) {
         messageService.sendMessage(String.valueOf(getLoggedUser(au).getId()), id, form.getMessage());
         return new RedirectView("{id}");
     }

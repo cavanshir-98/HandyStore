@@ -26,7 +26,9 @@ public class Userr {
     private String password;
     private String name;
     private String surname;
-    private String city;
+    
+    @OneToOne
+    private City city;
     private String phone;
 
     private String image;

@@ -30,8 +30,13 @@ public class WishList {
 
     String image;
 
-    @OneToOne
-    private Userr user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(name = "wishlist_user",
+            joinColumns = {@JoinColumn(name="wishlist_id")
+            },
+            inverseJoinColumns = {@JoinColumn(name = "user_id",
+                    referencedColumnName = "u_id")})
+    Userr user;
 
 
     @OneToOne

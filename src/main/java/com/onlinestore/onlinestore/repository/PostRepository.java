@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface PostRepository extends JpaRepository<Post, Long> {
     Optional<Post> findById(Long id);
 
+
+
     @Query("SELECT post from Post as post where post.user.id = :id")
     List<Post> findByUserId(Long id);
 

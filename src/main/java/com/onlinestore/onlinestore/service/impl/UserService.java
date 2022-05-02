@@ -1,5 +1,6 @@
 package com.onlinestore.onlinestore.service.impl;
 
+import com.onlinestore.onlinestore.model.City;
 import com.onlinestore.onlinestore.model.Userr;
 import com.onlinestore.onlinestore.repository.UserRepo;
 import com.onlinestore.onlinestore.security.UserrDetails;
@@ -51,7 +52,7 @@ public class UserService {
                 user.getSurname() != null;
     }
 
-    public void fillInfo(Long id, String name, String surname, String city, String number, MultipartFile file) throws Exception {
+    public void fillInfo(Long id, String name, String surname, City city, String number, MultipartFile file) throws Exception {
 
         Userr userrByEmail = userRepo.findById(id).orElseThrow(RuntimeException::new);
         userrByEmail.setName(name);
@@ -75,10 +76,10 @@ public class UserService {
     }
 
 
-    public void updateUser(Authentication authentication, String name, String surname, String city, String number, MultipartFile file) throws Exception {
+    public void updateUser(Authentication authentication, String name, String surname, City city, String number, MultipartFile file) throws Exception {
         if (name == null || surname == null || city == null
                 || number == null || name.isBlank()
-                || surname.isBlank() || city.isBlank() || number.isBlank()
+                || surname.isBlank() || city==null || number.isBlank()
                 || file.isEmpty()
         ) ;
         Userr user = userRepo.getById(getLoggedUser(authentication).getId());

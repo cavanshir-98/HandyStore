@@ -1,5 +1,6 @@
 package com.onlinestore.onlinestore.dto;
 
+import com.onlinestore.onlinestore.model.City;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -16,7 +17,7 @@ public class UserInfoDto {
 
     String surname;
 
-    String city;
+    City city;
 
     String number;
 

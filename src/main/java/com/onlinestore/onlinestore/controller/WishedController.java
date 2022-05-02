@@ -1,6 +1,7 @@
 package com.onlinestore.onlinestore.controller;
 
 import com.onlinestore.onlinestore.repository.UserRepo;
+import com.onlinestore.onlinestore.security.UserrDetails;
 import com.onlinestore.onlinestore.service.CityService;
 import com.onlinestore.onlinestore.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class WishedController {
     private final UserRepo userRepo;
 
     @GetMapping
-    public String getAllAddWish(Model model) {
+    public String getAllAddWish(Authentication authentication,Model model) {
 
         model.addAttribute("posts", postService.getAllWishList());
         model.addAttribute("user", userRepo.findAll());
@@ -31,7 +32,7 @@ public class WishedController {
 
 
     @GetMapping("/add/{id}")
-    public String AddWish(Model model, Authentication authentication, @PathVariable Long id) {
+    public String AddWish(Model model,  @PathVariable Long id) {
 
         model.addAttribute("wished", postService.addWishlist(id));
         return "redirect:/wishlist";
@@ -43,6 +44,9 @@ public class WishedController {
         model.addAttribute("wished", postService.deleteByIdForWishlist(id));
         return "redirect:/wishlist";
 
+    }
+    UserrDetails getLoggedUser(Authentication authentication) {
+        return (UserrDetails) authentication.getPrincipal();
     }
 
 }

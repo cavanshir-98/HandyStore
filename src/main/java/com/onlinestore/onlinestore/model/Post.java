@@ -14,32 +14,31 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Post  {
+public class Post {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="p_id")
-    private long id;
-    private String name;
+    @Column(name = "p_id")
+    long id;
+    String name;
 
     @OneToOne
-    private City city;
-    private String image;
-    private boolean status;
-    private LocalDate expiry_date;
-    private LocalDate date;
-
+    City city;
+    String image;
+    boolean status;
+    LocalDate expiry_date;
+    LocalDate date;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "r_post_user",
-            joinColumns = {@JoinColumn(name="post_id",
+            joinColumns = {@JoinColumn(name = "post_id",
                     referencedColumnName = "p_id"),
             },
             inverseJoinColumns = {@JoinColumn(name = "user_id",
                     referencedColumnName = "u_id")})
-    private Userr user;
+    Userr user;
 
 
     @OneToOne
@@ -55,6 +54,7 @@ public class Post  {
         this.status = true;
         this.date = LocalDate.now();
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);
