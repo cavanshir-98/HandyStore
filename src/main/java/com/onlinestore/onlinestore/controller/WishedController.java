@@ -1,5 +1,7 @@
 package com.onlinestore.onlinestore.controller;
 
+import com.onlinestore.onlinestore.repository.PostRepository;
+import com.onlinestore.onlinestore.repository.WishlistRepository;
 import com.onlinestore.onlinestore.security.UserrDetails;
 import com.onlinestore.onlinestore.service.CityService;
 import com.onlinestore.onlinestore.service.PostService;
@@ -19,12 +21,16 @@ public class WishedController {
 
     private final PostService postService;
     private final CityService cityService;
+
+    private final PostRepository postRepository;
     private final UserServiceImpl userServiceImpl;
+
+    private final WishlistRepository wishlistRepository;
 
     @GetMapping
     public String getAllAddWish(Authentication authentication, Model model) {
 
-        model.addAttribute("posts", postService.getAllWishList(getLoggedUser(authentication).getId()));
+        model.addAttribute("posts", wishlistRepository.findByUserIdForWishlist(getLoggedUser(authentication).getId()));
         model.addAttribute("user", userServiceImpl.findAll());
         model.addAttribute("city", cityService.getAll());
         return "wished";
