@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface RoleRepo extends JpaRepository<Role, Long> {
-  @Query("select r from Role r where r.name = ?1")
-  List<Role> findRolesByName(String role);
+    @Query("select r from Role r where r.name = ?1")
+    List<Role> findRolesByName(String role);
 }

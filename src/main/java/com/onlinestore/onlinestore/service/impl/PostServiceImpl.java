@@ -1,11 +1,8 @@
 package com.onlinestore.onlinestore.service.impl;
 
 import com.onlinestore.onlinestore.dto.PostDto;
-import com.onlinestore.onlinestore.model.Category;
 import com.onlinestore.onlinestore.model.Post;
-import com.onlinestore.onlinestore.model.Userr;
 import com.onlinestore.onlinestore.model.WishList;
-import com.onlinestore.onlinestore.repository.CategoryRepo;
 import com.onlinestore.onlinestore.repository.PostRepository;
 import com.onlinestore.onlinestore.repository.UserRepo;
 import com.onlinestore.onlinestore.repository.WishlistRepository;
@@ -23,13 +20,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -98,6 +93,7 @@ public class PostServiceImpl implements PostService {
         return byUserId;
     }
 
+
     @Override
     public Object deleteById(Long id) {
         postRepository.deleteById(id);
@@ -126,9 +122,7 @@ public class PostServiceImpl implements PostService {
         wishList.setDate(String.valueOf(post.getDate()));
         wishList.setCity(post.getCity());
         wishList.setCategory(post.getCategory());
-//   if (wishList.getId().equals(post.getId())){
-//        return null;
-//   }
+
         return wishlistRepository.save(wishList);
 
 
@@ -141,14 +135,20 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<WishList> getAllWishList() {
-        return wishlistRepository.findAll();
+    public List<WishList> getAllWishList(Long id) {
+        return wishlistRepository.findByUserIdForWishlist(id);
     }
 
     @Override
     public Page<Post> findPage(int currentPage) {
         Pageable pageable = PageRequest.of(currentPage - 1, 10);
         return postRepository.findAll(pageable);
+    }
+
+    @Override
+    public PostDto getById(Long id) {
+        Post getById = postRepository.getById(id);
+        return modelMapper.map(getById, PostDto.class);
     }
 
     UserrDetails getLoggedUser(Authentication authentication) {

@@ -43,20 +43,20 @@
 
     <div class="e-nav-container">
         <ul class="col-12 e-nav-list">
-            <li th:if="${#strings.contains(#httpServletRequest.requestURI, 'dashboard')}"
-                class="col-lg-4 col-md-12 col-sm-12 e-nav-item">
-                <a href="/update"
-                   class="nav-link  text-left e-nav-link d-flex text-center d-flex justify-content-center">
-                    <img src="img/logo/123.jpg" th:src="@{${loggedUser.getImage()}}" width="50" height="50"
-                         class="e-profile-img" alt="profile picture">
-                    <p th:text="${loggedUser.getName()}+' '+${loggedUser.getSurname()}" class="ml-2 e-par">Emin
+            <li class="col-lg-4 col-md-12 col-sm-12 e-nav-item"
+                th:if="${#strings.contains(#httpServletRequest.requestURI, 'dashboard')}">
+                <a class="nav-link  text-left e-nav-link d-flex text-center d-flex justify-content-center"
+                   href="/update">
+                    <img alt="profile picture" class="e-profile-img" height="50" src="img/logo/123.jpg"
+                         th:src="@{${loggedUser.getImage()}}" width="50">
+                    <p class="ml-2 e-par" th:text="${loggedUser.getName()}+' '+${loggedUser.getSurname()}">Emin
                         Israfilzadeh</p>
                 </a>
             </li>
-            <li th:unless="${#strings.contains(#httpServletRequest.requestURI, 'dashboard')}"
-                class="col-lg-4 col-md-12 col-sm-12 e-nav-item">
-                <a href="/dashboard"
-                   class="nav-link  text-left e-nav-link d-flex text-center d-flex justify-content-center">
+            <li class="col-lg-4 col-md-12 col-sm-12 e-nav-item"
+                th:unless="${#strings.contains(#httpServletRequest.requestURI, 'dashboard')}">
+                <a class="nav-link  text-left e-nav-link d-flex text-center d-flex justify-content-center"
+                   href="/dashboard">
                     Dashboard
                 </a>
             </li>
@@ -128,8 +128,8 @@
                     <div class="e-post-data">
                         <p class="col-12 mb-1 text-center" style="color: white" th:text="${post.name}">Boy</p>
                         <i class="fas fa-user col-2"></i>
-                        <a th:href="'/user/'+${post.user.getId()}"
-                           th:text="${post.user.getName()} + ' ' + ${post.user.getSurname()}" class="card-link">Emin
+                        <a class="card-link"
+                           th:href="'/user/'+${post.user.getId()}" th:text="${post.user.getName()} + ' ' + ${post.user.getSurname()}">Emin
                             Israfilzadeh</a>
                     </div>
                     <div class="e-post-data">
@@ -138,7 +138,7 @@
                     </div>
                     <div class="e-post-data">
                         <i class="far fa-calendar-alt col-2"></i>
-                      <p class="d-inline-block" th:text="${post.date}">23.07.2020</p>
+                        <p class="d-inline-block" th:text="${post.date}">23.07.2020</p>
                     </div>
                 </div>
                 <div class="e-post-contact">
@@ -161,18 +161,21 @@
             <ul class="pagination pagination-lg justify-content-center">
 
                 <li class="page-item">
-                    <a aria-disabled="true" class="page-link" tabindex="-1" th:href="@{'/dashboard/'+${currentPage-1}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}"
+                    <a aria-disabled="true" class="page-link" tabindex="-1"
+                       th:href="@{'/dashboard/'+${currentPage-1}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}"
                        th:if="${currentPage>1}">Previous</a>
                 </li>
 
                 <li class="page-item" th:each="i: ${#numbers.sequence(1,totalPages)}">
-                    <a class="page-link" th:href="@{'/dashboard/' + ${i} +'?sortField='+${sortField}+'&sortDir='+${sortDir}}"
+                    <a class="page-link"
+                       th:href="@{'/dashboard/' + ${i} +'?sortField='+${sortField}+'&sortDir='+${sortDir}}"
                        th:if="${i!=currentPage}">[[${i}]]</a>
                     <span class="page-link" th:unless="${i!=currentPage}">[[${i}]]</span>
                 </li>
 
                 <li class="page-item">
-                    <a class="page-link" th:href="@{'/dashboard/'+${currentPage+1}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}"
+                    <a class="page-link"
+                       th:href="@{'/dashboard/'+${currentPage+1}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}"
                        th:if="${currentPage<totalPages}">Next</a>
                     <span class="page-link" th:unless="${currentPage<totalPages}">Next</span>
                 </li>

@@ -1,7 +1,6 @@
 package com.onlinestore.onlinestore.controller;
 
 import com.onlinestore.onlinestore.dto.PostDto;
-import com.onlinestore.onlinestore.repository.PostRepository;
 import com.onlinestore.onlinestore.security.UserrDetails;
 import com.onlinestore.onlinestore.service.CategoryService;
 import com.onlinestore.onlinestore.service.CityService;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 public class PostViewController {
 
     private final PostService postService;
-    private final PostRepository postRepository;
     private final CategoryService categoryService;
     private final CityService cityService;
 
@@ -30,16 +28,14 @@ public class PostViewController {
 
     @GetMapping("/{id}")
     public String getPostUpdateById(Model model, @PathVariable Long id) {
-        model.addAttribute("post", postRepository.getById(id));
+        model.addAttribute("post", postService.getById(id));
         model.addAttribute("category", categoryService.getAll());
         model.addAttribute("city", cityService.getAll());
         return "up-post";
     }
 
     @PostMapping("/{id}")
-    public String updateById(Model model, @PathVariable Long id,
-                             @ModelAttribute PostDto postDto) throws Exception {
-
+    public String updateById(@PathVariable Long id, @ModelAttribute PostDto postDto) throws Exception {
         postService.updateById(id, postDto);
         return "redirect:/myposts";
     }

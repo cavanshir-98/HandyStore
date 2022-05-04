@@ -22,7 +22,7 @@ public class Message {
 
     @ManyToOne
     @JoinTable(name = "r_from_mes",
-            joinColumns = {@JoinColumn(name="message_id",
+            joinColumns = {@JoinColumn(name = "message_id",
                     referencedColumnName = "m_id"),
             },
             inverseJoinColumns = {@JoinColumn(name = "from_id",
@@ -31,7 +31,7 @@ public class Message {
 
     @ManyToOne
     @JoinTable(name = "r_to_mes",
-            joinColumns = {@JoinColumn(name="message_id",
+            joinColumns = {@JoinColumn(name = "message_id",
                     referencedColumnName = "m_id"),
             },
             inverseJoinColumns = {@JoinColumn(name = "to_id",

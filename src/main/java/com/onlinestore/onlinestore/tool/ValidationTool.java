@@ -1,6 +1,5 @@
 package com.onlinestore.onlinestore.tool;
 
-import com.onlinestore.onlinestore.repository.BlockedRepo;
 import com.onlinestore.onlinestore.repository.UserRepo;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -14,7 +13,6 @@ import java.util.Optional;
 public class ValidationTool {
 
     private final UserRepo userRepo;
-    private final BlockedRepo blockedRepo;
 
     public boolean isEmailUnique(String email) {
         return userRepo.findUserrByEmail(email.toLowerCase())
@@ -24,7 +22,6 @@ public class ValidationTool {
     public boolean passMatches(String pass, String passConfirm) {
         return pass.equals(passConfirm);
     }
-
 
     public boolean isParsableToLong(String source) {
         try {
@@ -37,12 +34,4 @@ public class ValidationTool {
         }
     }
 
-    public boolean isBlocked(String whoId, long whomId) {
-        if (!isParsableToLong(whoId)) return false;
-
-        return blockedRepo.findByWhoAndWhom(
-                        userRepo.findById(Long.parseLong(whoId)).orElseThrow(RuntimeException::new),
-                        userRepo.findById(whomId).orElseThrow(RuntimeException::new))
-                .isPresent();
-    }
 }

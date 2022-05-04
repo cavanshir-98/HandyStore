@@ -1,7 +1,6 @@
 package com.onlinestore.onlinestore.service.impl;
 
 import com.onlinestore.onlinestore.dto.CategoryDto;
-import com.onlinestore.onlinestore.model.Category;
 import com.onlinestore.onlinestore.repository.CategoryRepo;
 import com.onlinestore.onlinestore.service.CategoryService;
 import lombok.RequiredArgsConstructor;

@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Enumeration;
 import java.util.Objects;
 
 @Data
@@ -15,8 +14,6 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 public class Post {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "p_id")

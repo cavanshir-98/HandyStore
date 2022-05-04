@@ -3,12 +3,9 @@ package com.onlinestore.onlinestore.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.logging.log4j.message.Message;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -26,7 +23,7 @@ public class Userr {
     private String password;
     private String name;
     private String surname;
-    
+
     @OneToOne
     private City city;
     private String phone;
@@ -40,17 +37,6 @@ public class Userr {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<WishList> wishLists;
-//    @OneToMany(mappedBy = "from", fetch = FetchType.LAZY)
-//    private Set<Message> from_messages;
-//
-//    @OneToMany(mappedBy = "to", fetch = FetchType.LAZY)
-//    private Set<Message> to_messages;
-
-    @OneToMany(mappedBy = "who")
-    private Set<Blocked> who_block;
-
-    @OneToMany(mappedBy = "whom")
-    private Set<Blocked> whom_block;
 
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private Set<Role> roles;
@@ -58,10 +44,9 @@ public class Userr {
     @OneToMany(mappedBy = "user")
     private Set<ResetToken> resetTokens;
 
-
-    public Userr(String email, String password, LocalDateTime reg_date, boolean status){
-        this.email=email;
-        this.password=password;
+    public Userr(String email, String password, LocalDateTime reg_date, boolean status) {
+        this.email = email;
+        this.password = password;
         this.reg_date = reg_date;
         this.status = status;
     }
@@ -82,4 +67,5 @@ public class Userr {
     @Override
     public String toString() {
         return String.format("Userr{id=%d}", id);
-    }}
+    }
+}

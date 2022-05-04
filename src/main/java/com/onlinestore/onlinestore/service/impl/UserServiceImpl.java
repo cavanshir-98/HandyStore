@@ -5,6 +5,7 @@ import com.onlinestore.onlinestore.model.Userr;
 import com.onlinestore.onlinestore.repository.UserRepo;
 import com.onlinestore.onlinestore.security.UserrDetails;
 import com.onlinestore.onlinestore.service.CloudinaryAdapter;
+import com.onlinestore.onlinestore.service.UserService;
 import com.onlinestore.onlinestore.tool.ValidationTool;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -16,13 +17,14 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 @Log4j2
 @AllArgsConstructor
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService {
     private final ValidationTool validationTool;
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
@@ -79,7 +81,7 @@ public class UserService {
     public void updateUser(Authentication authentication, String name, String surname, City city, String number, MultipartFile file) throws Exception {
         if (name == null || surname == null || city == null
                 || number == null || name.isBlank()
-                || surname.isBlank() || city==null || number.isBlank()
+                || surname.isBlank() || city == null || number.isBlank()
                 || file.isEmpty()
         ) ;
         Userr user = userRepo.getById(getLoggedUser(authentication).getId());
@@ -124,6 +126,14 @@ public class UserService {
 
     public Optional<Userr> findUserForLogin(String email) {
         return userRepo.findUserrByEmail(email);
+    }
+
+    public Optional<Userr> getById(Long id) {
+        return userRepo.findById(id);
+    }
+
+    public List<Userr> findAll() {
+        return userRepo.findAll();
     }
 
     UserrDetails getLoggedUser(Authentication authentication) {

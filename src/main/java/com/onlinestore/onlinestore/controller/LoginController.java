@@ -13,15 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/signin")
 public class LoginController {
+    @GetMapping
+    public String login() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-  @GetMapping
-  public String login() {
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-    if (!(auth instanceof AnonymousAuthenticationToken)) {
-      return "redirect:/dashboard";
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            return "redirect:/dashboard";
+        }
+        return "signin";
     }
-    return "signin";
-  }
 
 }

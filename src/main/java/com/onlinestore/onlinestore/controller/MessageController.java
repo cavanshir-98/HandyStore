@@ -4,7 +4,7 @@ import com.onlinestore.onlinestore.dto.ChatDto;
 import com.onlinestore.onlinestore.model.Message;
 import com.onlinestore.onlinestore.security.UserrDetails;
 import com.onlinestore.onlinestore.service.MessageService;
-import com.onlinestore.onlinestore.service.impl.UserService;
+import com.onlinestore.onlinestore.service.impl.UserServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.Authentication;
@@ -25,12 +25,12 @@ import java.util.List;
 public class MessageController {
 
     private final MessageService messageService;
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
     @GetMapping()
     public String getLastMessageByUser(Model model, Authentication au) {
-        model.addAttribute("loggedUser", userService.findByEmail(getLoggedUser(au).getUsername()));
-        model.addAttribute("connections",messageService.findLastMessagesByUser(getLoggedUser(au).getId()));
+        model.addAttribute("loggedUser", userServiceImpl.findByEmail(getLoggedUser(au).getUsername()));
+        model.addAttribute("connections", messageService.findLastMessagesByUser(getLoggedUser(au).getId()));
         return "chat-main";
     }
 
@@ -40,8 +40,8 @@ public class MessageController {
 
         List<Message> m = messageService.findMessagesBetween(loggedUserId, id);
 
-        model.addAttribute("loggedUser", userService.findByEmail(getLoggedUser(au).getUsername()));
-        model.addAttribute("currentUser", userService.findById(id));
+        model.addAttribute("loggedUser", userServiceImpl.findByEmail(getLoggedUser(au).getUsername()));
+        model.addAttribute("currentUser", userServiceImpl.findById(id));
         model.addAttribute("messages", m.subList(Math.max(m.size() - 5, 0), m.size()));
         return "chat-private";
     }
@@ -50,8 +50,8 @@ public class MessageController {
     public String seeAllMessages(@PathVariable String id, Model model, Authentication au) {
         long loggedUserId = getLoggedUser(au).getId();
 
-        model.addAttribute("loggedUser", userService.findByEmail(getLoggedUser(au).getUsername()));
-        model.addAttribute("currentUser", userService.findById(id));
+        model.addAttribute("loggedUser", userServiceImpl.findByEmail(getLoggedUser(au).getUsername()));
+        model.addAttribute("currentUser", userServiceImpl.findById(id));
         model.addAttribute("messages", messageService.findMessagesBetween(loggedUserId, id));
         return "chat-private";
     }

@@ -8,5 +8,5 @@ import java.util.Map;
 @Repository
 public interface CloudinaryAdapter {
 
-    Map uploadImageCloudinary(File file)throws Exception;
+    Map uploadImageCloudinary(File file) throws Exception;
 }

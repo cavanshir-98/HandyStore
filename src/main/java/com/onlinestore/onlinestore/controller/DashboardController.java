@@ -5,7 +5,7 @@ import com.onlinestore.onlinestore.model.Post;
 import com.onlinestore.onlinestore.security.UserrDetails;
 import com.onlinestore.onlinestore.service.CityService;
 import com.onlinestore.onlinestore.service.PostService;
-import com.onlinestore.onlinestore.service.impl.UserService;
+import com.onlinestore.onlinestore.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
@@ -24,7 +24,7 @@ import java.util.List;
 public class DashboardController {
 
 
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
     private final PostService postService;
     private final CityService cityService;
 
@@ -48,9 +48,9 @@ public class DashboardController {
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("totalItems", totalItems);
         model.addAttribute("posts", posts);
-        model.addAttribute("user", userService.findByEmail(getLoggedUser(au).getUsername()));
+        model.addAttribute("user", userServiceImpl.findByEmail(getLoggedUser(au).getUsername()));
         model.addAttribute("city", cityService.getAll());
-        model.addAttribute("loggedUser", userService.findByEmail(getLoggedUser(au).getUsername()));
+        model.addAttribute("loggedUser", userServiceImpl.findByEmail(getLoggedUser(au).getUsername()));
 
         return "dashboard";
     }

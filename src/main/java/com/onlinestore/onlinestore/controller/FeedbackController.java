@@ -8,7 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 @RequiredArgsConstructor
@@ -18,7 +21,6 @@ public class FeedbackController {
 
     private final FeedbackService feedbackService;
 
-
     @GetMapping
     public String handle_get() {
         return "feedback";
@@ -26,7 +28,7 @@ public class FeedbackController {
 
     @PostMapping
     public RedirectView handle_post(@ModelAttribute Feedback feedback, Model model) {
-        model.addAttribute("feedback",feedbackService.saveFeedback(feedback) );
+        model.addAttribute("feedback", feedbackService.saveFeedback(feedback));
         return new RedirectView("/dashboard/1");
     }
 

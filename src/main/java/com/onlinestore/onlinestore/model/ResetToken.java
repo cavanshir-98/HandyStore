@@ -15,13 +15,13 @@ import java.util.Objects;
 public class ResetToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="rt_id")
+    @Column(name = "rt_id")
     private long id;
     private String token;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "r_reset_user",
-            joinColumns = {@JoinColumn(name="reset_id",
+            joinColumns = {@JoinColumn(name = "reset_id",
                     referencedColumnName = "rt_id"),
             },
             inverseJoinColumns = {@JoinColumn(name = "user_id",
@@ -29,8 +29,8 @@ public class ResetToken {
     private Userr user;
 
     public ResetToken(Userr user, String token) {
-    this.user = user;
-    this.token = token;
+        this.user = user;
+        this.token = token;
     }
 
     @Override

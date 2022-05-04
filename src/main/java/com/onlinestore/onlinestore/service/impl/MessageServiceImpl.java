@@ -18,12 +18,12 @@ import java.util.stream.Collectors;
 public class MessageServiceImpl implements MessageService {
 
     private final MessageRepo messageRepo;
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
     @Override
     public List<Message> findMessagesBetween(long loggedUserId, String currentUserId) {
-        Userr loggedUser = userService.findById(String.valueOf(loggedUserId));
-        Userr currentUser = userService.findById(currentUserId);
+        Userr loggedUser = userServiceImpl.findById(String.valueOf(loggedUserId));
+        Userr currentUser = userServiceImpl.findById(currentUserId);
 
         List<Message> allMessages = new ArrayList<>();
 
@@ -36,7 +36,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public List<Message> findLastMessagesByUser(long loggedUserId) {
-        Userr loggedUser = userService.findById(String.valueOf(loggedUserId));
+        Userr loggedUser = userServiceImpl.findById(String.valueOf(loggedUserId));
 
         return messageRepo.findAllByFromOrTo(loggedUser, loggedUser)
                 .stream()
@@ -53,8 +53,8 @@ public class MessageServiceImpl implements MessageService {
 
         messageRepo.save(
                 new Message(
-                        userService.findById(loggedUserId),
-                        userService.findById(currentUserId),
+                        userServiceImpl.findById(loggedUserId),
+                        userServiceImpl.findById(currentUserId),
                         text,
                         LocalDateTime.now()));
     }

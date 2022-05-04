@@ -1,8 +1,6 @@
 package com.onlinestore.onlinestore.service.impl;
 
 import com.onlinestore.onlinestore.dto.CityDto;
-import com.onlinestore.onlinestore.model.City;
-import com.onlinestore.onlinestore.model.Post;
 import com.onlinestore.onlinestore.repository.CityRepository;
 import com.onlinestore.onlinestore.repository.PostRepository;
 import com.onlinestore.onlinestore.service.CityService;
