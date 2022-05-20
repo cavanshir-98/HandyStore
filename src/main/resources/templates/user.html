@@ -58,8 +58,8 @@
             </div>
             <div class="e-user-info">
                 <h1 class="col-12 e-user-data" th:text="${user.name} + ' ' + ${user.surname}"></h1>
-                <p class="col-12 e-user-data" th:text="${user.city}"></p>
-                <p class="col-12 e-user-data" th:text="'(+994) ' + ${user.phone}"></p>
+                <p class="col-12 e-user-data" th:text="${user.city.name}"></p>
+                <p class="col-12 e-user-data" th:text="${user.phone}"></p>
                 <a class="col-lg-3 col-md-3 col-sm-12 btn nav-link e-user-btn" th:href="'/message/'+${user.id}"><i
                         class="fas fa-envelope col-2"></i>Send Message</a>
                 <a class="col-lg-3 col-md-3 col-sm-12 btn nav-link e-user-btn" th:href="'block/' + ${user.id}"><i

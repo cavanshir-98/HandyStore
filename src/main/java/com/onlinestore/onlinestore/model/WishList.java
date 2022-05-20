@@ -23,6 +23,9 @@ public class WishList {
     @OneToOne
     City city;
 
+    @OneToOne
+    Post post;
+
     @DateTimeFormat(pattern = "mm/dd/yyyy")
     String date;
 
@@ -40,6 +43,7 @@ public class WishList {
     @OneToOne
     @JoinColumn(name = "category_Id")
     Category category;
+
 
 
 }

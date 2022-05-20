@@ -10,4 +10,5 @@ public interface WishlistRepository extends JpaRepository<WishList, Long> {
 
     @Query("SELECT wishlist from WishList as wishlist where wishlist.user.id = :id")
     List<WishList> findByUserIdForWishlist(Long id);
+
 }

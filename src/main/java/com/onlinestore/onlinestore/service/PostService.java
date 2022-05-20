@@ -20,14 +20,15 @@ public interface PostService {
 
     List<PostDto> findAll();
 
-    WishList addWishlist(Long id);
+    WishList addWishlist(Authentication authentication,Long id);
 
     Object deleteByIdForWishlist(Long id);
 
-    List<WishList> getAllWishList(Long id);
+    List<WishList> getAllWishList();
 
     Page<Post> findPage(int currentPage);
 
     PostDto getById(Long id);
+
 
 }

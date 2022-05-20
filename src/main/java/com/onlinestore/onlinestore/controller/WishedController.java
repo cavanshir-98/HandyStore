@@ -1,6 +1,7 @@
 package com.onlinestore.onlinestore.controller;
 
-import com.onlinestore.onlinestore.repository.PostRepository;
+import com.onlinestore.onlinestore.dto.PostDto;
+import com.onlinestore.onlinestore.repository.UserRepo;
 import com.onlinestore.onlinestore.repository.WishlistRepository;
 import com.onlinestore.onlinestore.security.UserrDetails;
 import com.onlinestore.onlinestore.service.CityService;
@@ -21,25 +22,25 @@ public class WishedController {
 
     private final PostService postService;
     private final CityService cityService;
-
-    private final PostRepository postRepository;
     private final UserServiceImpl userServiceImpl;
 
     private final WishlistRepository wishlistRepository;
+    private final UserRepo userRepo;
+
 
     @GetMapping
     public String getAllAddWish(Authentication authentication, Model model) {
 
-        model.addAttribute("posts", wishlistRepository.findByUserIdForWishlist(getLoggedUser(authentication).getId()));
-        model.addAttribute("user", userServiceImpl.findAll());
+        model.addAttribute("posts", postService.getAllWishList());
+            model.addAttribute("user", postService.findAll());
         model.addAttribute("city", cityService.getAll());
         return "wished";
     }
 
     @GetMapping("/add/{id}")
-    public String AddWish(Model model, @PathVariable Long id) {
+    public String AddWish(Model model,Authentication authentication, @PathVariable Long id) {
 
-        model.addAttribute("wished", postService.addWishlist(id));
+        model.addAttribute("wished", postService.addWishlist(authentication,id));
         return "redirect:/wishlist";
     }
 
@@ -49,10 +50,6 @@ public class WishedController {
         model.addAttribute("wished", postService.deleteByIdForWishlist(id));
         return "redirect:/wishlist";
 
-    }
-
-    UserrDetails getLoggedUser(Authentication authentication) {
-        return (UserrDetails) authentication.getPrincipal();
     }
 
 }

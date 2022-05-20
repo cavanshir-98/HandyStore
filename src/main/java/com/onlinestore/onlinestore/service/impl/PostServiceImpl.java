@@ -37,6 +37,7 @@ public class PostServiceImpl implements PostService {
     private final CloudinaryAdapter cloudinaryAdapter;
     private final UserRepo userRepo;
 
+
     @Override
     public Post addPost(Authentication authentication, PostDto postDto) throws Exception {
         Post post = new Post();
@@ -110,12 +111,12 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public WishList addWishlist(Long id) {
+    public WishList addWishlist(Authentication authentication,Long id) {
 
         WishList wishList = new WishList();
         Post post = postRepository.getById(id);
 
-        wishList.setUser(post.getUser());
+        wishList.setUser(userRepo.getById(getLoggedUser(authentication).getId()));
         wishList.setName(post.getName());
         wishList.setId(post.getId());
         wishList.setImage(post.getImage());
@@ -135,8 +136,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<WishList> getAllWishList(Long id) {
-        return wishlistRepository.findByUserIdForWishlist(id);
+    public List<WishList> getAllWishList() {
+        return wishlistRepository.findAll();
     }
 
     @Override

@@ -30,5 +30,4 @@ public interface UserService {
 
     Optional<Userr> getById(Long id);
 
-    List<Userr> findAll();
 }

@@ -22,6 +22,9 @@ public class Post {
 
     @OneToOne
     City city;
+
+    @OneToOne
+    WishList wishList;
     String image;
     boolean status;
     LocalDate expiry_date;

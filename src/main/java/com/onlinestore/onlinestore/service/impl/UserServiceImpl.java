@@ -25,6 +25,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
+
     private final ValidationTool validationTool;
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
